@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lock Your Screen</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #A0A0A0;
+        }
+        
+        #randomImage {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <img id="randomImage" src="" alt="Random Image">
+    
+    <script>
+        const imageUrls = [
+            'https://media.makeameme.org/created/lock-your-computer-94f4d141f2.jpg',
+            "https://i.imgur.com/RIN87.jpg",
+            "https://media.makeameme.org/created/for-the-last-d5032aa529.jpg"
+        ];
+
+        let attemptedImages = [];
+        
+        function loadRandomImage() {
+            if (attemptedImages.length >= imageUrls.length) {
+                console.log('All images failed to load');
+                return;
+            }
+            
+            let availableImages = imageUrls.filter(url => !attemptedImages.includes(url));
+            const randomIndex = Math.floor(Math.random() * availableImages.length);
+            const selectedUrl = availableImages[randomIndex];
+            
+            const img = document.getElementById('randomImage');
+            
+            img.onload = function() {
+                console.log('Image loaded successfully');
+            };
+            
+            img.onerror = function() {
+                console.log('Image failed to load, trying another...');
+                attemptedImages.push(selectedUrl);
+                loadRandomImage();
+            };
+            
+            attemptedImages.push(selectedUrl);
+            img.src = selectedUrl;
+        }
+        
+        loadRandomImage();
+    </script>
+</body>
+</html>
