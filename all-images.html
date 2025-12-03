@@ -4,52 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Images</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 20px;
-            background-color: #A0A0A0;
-            font-family: Arial, sans-serif;
-        }
-
-        h1 {
-            text-align: center;
-            color: #fff;
-        }
-
-        .image-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .image-grid img {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-        }
-
-        a.back-link {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-            color: white;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        a.back-link:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>All Images</h1>
+    <div id="allImages">
 
-    <div class="image-grid" id="imageGrid"></div>
+        <h1>All Images</h1>
 
-    <a href="index.html" class="back-link">Back to Random Image</a>
+        <div id="imageGrid"></div>
+
+        <a href="index.html" class="back-link">Back to Random Image</a>
+    </div>
 
     <script src="images.js"></script>
     <script>

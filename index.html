@@ -4,30 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lock Your Screen</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #A0A0A0;
-        }
-        
-        #randomImage {
-            max-width: 80%;
-            max-height: 80%;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <img id="randomImage" src="" alt="Random Image">
 
     <script src="images.js"></script>
     <script>
+        let clickCount = 0;
+        const secretClicksNeeded = 10;
+
+        const img = document.getElementById('randomImage');
+        img.addEventListener('click', () => {
+            clickCount++;
+            if (clickCount >= secretClicksNeeded) {
+                window.location.href = 'all-images.html';
+            }
+        });
+
         let attemptedImages = [];
         
         function loadRandomImage() {
