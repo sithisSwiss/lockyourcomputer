@@ -8,7 +8,6 @@
 </head>
 <body>
     <img id="randomImage" src="" alt="Random Image">
-    <button id="nextImageButton">Next Image</button>
 
     <script src="images.js"></script>
     <script>
@@ -23,37 +22,17 @@
             }
         });
 
-        const nextImageButton = document.getElementById('nextImageButton');
-        nextImageButton.addEventListener('click', () => {
-            loadRandomImage();
-        });
-
-        let availableImageIndexes = [];
-        for (let i = 0; i < imageUrls.length; i++) {
-            availableImageIndexes.push(i);
-        }
-
-        let currentImageIndex = -1;
+        let attemptedImages = [];
         
         function loadRandomImage() {
-            if (availableImageIndexes.length === 0) {
+            if (attemptedImages.length >= imageUrls.length) {
                 console.log('All images failed to load');
                 return;
             }
-
-            const randomIdx = Math.floor(Math.random() * availableImageIndexes.length);
-            const imageIndex = availableImageIndexes[randomIdx];
-            loadImage(imageIndex);
-        }
-
-        function loadNextImage() {
-            let availableCurrentIndex = availableImageIndexes.indexOf(currentImageIndex);
-            let nextIndex = (availableCurrentIndex + 1) % availableImageIndexes.length;
-            loadImage(availableImageIndexes[nextIndex]);
-        }
-
-        function loadImage(imageIndex) {
-            const selectedUrl = imageUrls[imageIndex];
+            
+            let availableImages = imageUrls.filter(url => !attemptedImages.includes(url));
+            const randomIndex = Math.floor(Math.random() * availableImages.length);
+            const selectedUrl = availableImages[randomIndex];
             
             const img = document.getElementById('randomImage');
             
@@ -63,12 +42,12 @@
             
             img.onerror = function() {
                 console.log('Image failed to load, trying another...');
-                availableImageIndexes.remove(imageIndex);
+                attemptedImages.push(selectedUrl);
                 loadRandomImage();
             };
             
+            attemptedImages.push(selectedUrl);
             img.src = selectedUrl;
-            currentImageIndex = imageIndex;
         }
         
         loadRandomImage();

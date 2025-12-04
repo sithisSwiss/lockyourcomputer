@@ -34,6 +34,35 @@ a.back-link:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
+#nextImageButton{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 5px 5px;
+    font-size: 12px;
+    cursor: pointer;
+    opacity: 0.1;
+    background-color: rgba(255, 255, 255, 0.7);
+    color: black;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+#nextImageButton:hover {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+#nextImageButton:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
 /* Styles for all-images.html */
 #allImages {
     padding: 20px;
